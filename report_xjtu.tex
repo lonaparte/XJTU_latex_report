@@ -1,0 +1,279 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[UTF8]{ctex}
+\usepackage{lipsum}
+\usepackage{listings} 
+\usepackage{bigstrut}
+\usepackage{graphicx}
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry}
+\usepackage{wallpaper} 
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[titletoc]{appendix}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\newcommand{\subject}[1]{\renewcommand{\subject}{#1}}
+\newcommand{\titre}[1]{\renewcommand{\titre}{#1}}
+\newcommand{\name}[1]{\renewcommand{\name}{#1}}
+\newcommand{\numero}[1]{\renewcommand{\numero}{#1}}
+\newcommand{\classnum}[1]{\renewcommand{\classnum}{#1}}
+\newcommand{\semester}[1]{\renewcommand{\semester}{#1}}
+
+\titlecontents{chapter}[0em]{\songti\zihao{-4}}{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+\titlecontents{section}[2em]{\vspace{0.1\baselineskip}\songti\zihao{-4}}{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+\titlecontents{subsection}[4em]{\vspace{0.1\baselineskip}\songti\zihao{-4}}{\thecontentslabel\ }{}
+{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+\newcommand{\fig}[4]{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=#2\textwidth]{images/#1}
+\caption{#3}
+\label {fig: #4}
+\end{figure}
+}
+
+\newcommand{\eq}[2]{
+\begin{equation}
+#1
+\label {eq: #2}
+\end{equation}
+}
+
+\newcommand{\figfig}[8]{
+\begin{figure}[ht]
+\begin{minipage}{#2\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{images/#1}
+\caption{#3}
+\label {fig: #4}
+\end{minipage}
+\begin{minipage}{#6\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{images/#5}
+\caption{#7}
+\label {fig: #8}
+\end{minipage}
+\end{figure}
+}
+
+\begin{document}
+
+% -----------------------------------------------------------------------
+% 文档信息
+% -----------------------------------------------------------------------
+\subject{微机原理}
+\titre{实验报告}
+\name{无名氏}
+\numero{6666666666}
+\classnum{电气45班}
+\semester{2018年秋季学期}
+% -----------------------------------------------------------------------
+
+% -----------------------------------------------------------------------
+% 自定义章节格式
+% -----------------------------------------------------------------------
+\titleformat{\chapter}{\centering\zihao{-1}\heiti}{实验\chinese{chapter}}{1em}{}
+\titlespacing{\chapter}{0pt}{*0}{*6}
+% -----------------------------------------------------------------------
+
+% -----------------------------------------------------------------------
+% 自定义摘要标题
+% -----------------------------------------------------------------------
+\renewcommand{\abstractname}{\zihao{-3} 摘\quad 要}
+% -----------------------------------------------------------------------
+
+% -----------------------------------------------------------------------
+% 自定义参考文献格式
+% -----------------------------------------------------------------------
+% \renewcommand{\bibname}{\zihao{2}{\hspace{\fill}参\hspace{0.5em}考\hspace{0.5em}文\hspace{0.5em}献\hspace{\fill}}}
+\makeatletter
+\def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
+\makeatother
+% -----------------------------------------------------------------------
+
+\fancypagestyle{plain}{
+	\pagestyle{fancy}
+}
+\pagestyle{fancy}
+\fancyheadoffset{1cm}
+\setlength{\headheight}{2cm}
+% -----------------------------------------------------------------------
+% 页眉和页脚设置
+% -----------------------------------------------------------------------
+% \renewcommand{\chaptername}{实验\chinese{chapter}}
+% \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\lhead{\includegraphics[scale=0.1]{logos/logo_xjtu.png}} %Affichage de l'image au top de la page
+\rhead{\protect\nouppercase\leftmark}
+\cfoot{\thepage}
+\chead{\subject}
+\lfoot{\titre}
+\rfoot{\name \ \ \numero}
+% -----------------------------------------------------------------------
+
+% -----------------------------------------------------------------------
+% 代码格式设置
+% -----------------------------------------------------------------------
+\lstset{numbers=left, 
+	basicstyle=\small\sffamily,
+	numbers=left,
+ 	numberstyle=\tiny,
+	frame=none,
+	tabsize=4,
+	columns=fixed,
+	showstringspaces=false,
+	showtabs=false,
+	keepspaces,
+	commentstyle=\color{red},
+	keywordstyle=\color{blue},
+    breaklines=true,
+    backgroundcolor=\color{lightgray!40!white},
+    basicstyle=\ttfamily,
+    commentstyle=\ttfamily\color{green!40!black}
+} 
+% -----------------------------------------------------------------------
+
+\begin{titlepage}
+
+\ThisLRCornerWallPaper{0.4}{logos/Picture1.jpg}
+\centering %Centraliser le contenu
+\includegraphics[width=0.8\textwidth]{logos/logo_xjtu.png}\par\vspace{1cm} 
+\vspace{1.5cm}
+\rule{\linewidth}{0.4 mm} \\[0 cm]
+{\Huge\bfseries \subject \par} %sous-titre
+\vspace{0.2cm}
+\rule{\linewidth}{0.4 mm} \\[0.4 cm]
+{\LARGE\bfseries \titre \par} \
+\\
+{\large \semester \par} \
+\\
+\vspace{3cm}
+\large{
+\begin{tabular}{ll}
+姓名&\name \\
+学号&\numero \\
+班级&\classnum \\
+\end{tabular}}
+\vspace{2cm}
+    
+\vfill
+{\large \today\par} %Affichage de la date
+
+\end{titlepage}
+
+% -----------------------------------------------------------------------
+% 摘要页
+% -----------------------------------------------------------------------
+\begin{abstract}
+\begin{spacing}{1.5}
+    {\zihao{-4}
+    西安交通大学\\[0.5cm]
+    \textbf{关键字}：\quad 西安交通大学
+    }
+\end{spacing}
+\end{abstract}
+% -----------------------------------------------------------------------
+
+\tableofcontents
+\newpage
+
+\chapter{实验一}
+
+\section{介绍}
+
+% -----------------------------------------------------------------------
+% 参考文献
+% -----------------------------------------------------------------------
+\addcontentsline{toc}{chapter}{参考文献}
+
+\begin{thebibliography}{99}
+\songti \zihao{-4} 	
+\bibitem{Leslie.{1994}}
+Leslie Lamport. LATEX: A Document Preparation System.AddisonWesley, Reading, Massachusetts, second edition, 1994, ISBN 0-201-52983-1.
+
+\bibitem{Donald.{1984}}
+Donald E. Knuth. The TEXbook, Volume A of Computers and Typesetting,Addison Wesley, Reading, Massachusetts, second edition, 1984,ISBN 0-201-13448-9.
+\end{thebibliography}
+% -----------------------------------------------------------------------
+
+% -----------------------------------------------------------------------
+%  附录设置
+% -----------------------------------------------------------------------
+\titleformat{\chapter}{\heiti\Large}{附录~\Alph{chapter}}{11pt}{\Large}
+\titlespacing{\chapter}{0pt}{*-4}{*4}
+
+\lstset{breaklines}                %自动将长的代码行换行排版
+\lstset{extendedchars=false}
+\lstset{language=Matlab}
+\renewcommand{\thechapter}{附录\Alph{chapter}.} 
+\appendix
+\begin{appendix}
+	
+	
+\chapter{数据表}
+\zihao{-4}\songti
+\begin{spacing}{1.5}
+	hello world!
+\end{spacing}
+
+
+\chapter{程序代码}
+\zihao{-4}\songti
+\begin{spacing}{1.5}
+下面是一个MATLAB程序的事例，使用了Package mcode，它能较好还原MATLAB本身的编写风格。
+\begin{lstlisting}[language={matlab}]
+%The program normalizes the measurement data and compares it to the standard cosine function
+data=xlsread('data_sun',1,'B3:E39');
+min=[(data(1,1)+data(37,1))/2,(data(1,2)+data(37,2))/2,...
+(data(1,3)+data(37,3))/2,(data(1,4)+data(37,4))/2];
+max=[data(19,1),data(19,2),data(19,3),data(19,4)];
+Min=repmat(min,37,1);
+Max=repmat(max,37,1);
+data=(data-Min)./(Max-Min);
+x=-pi/2:pi/36:pi/2;
+y=cos(x);
+%----------------------figure-------------------------%
+figure(1);
+subplot(2,2,1);
+plot(x,data(:,1),'ro-');
+hold on;
+plot(x,y,'b-');
+title('R=1.2\Omega');
+axis([-2,2,0,1]);
+grid on;
+subplot(2,2,2);
+plot(x,data(:,2),'ro-');
+hold on;
+plot(x,y,'b-');
+title('R=1.6\Omega');
+axis([-2,2,0,1]);
+grid on;
+subplot(2,2,3);
+plot(x,data(:,2),'ro-');
+hold on;
+plot(x,y,'b-');
+title('R=2.0\Omega');
+axis([-2,2,0,1]);
+grid on;
+subplot(2,2,4);
+plot(x,data(:,4),'ro-');
+hold on;
+plot(x,y,'b-');
+title('R=2.4\Omega');
+grid on;
+axis([-2,2,0,1]);
+\end{lstlisting}
+\end{spacing}
+\end{appendix}
+% -----------------------------------------------------------------------
+
+\end{document}
